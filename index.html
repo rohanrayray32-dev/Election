@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Election Process Assistant</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- Loading Screen -->
+  <div id="loading-screen">
+    <div class="loader-icon">&#127963;</div>
+    <div class="loader-text">CIVICGUIDE</div>
+  </div>
+
+  <!-- Scroll Progress Bar -->
+  <div id="progress-bar"></div>
+
+  <!-- Notification -->
+  <div id="notification" class="notification hidden">
+    <strong>&#128197; Election Day: Nov 4, 2025</strong>
+    <p>Don&rsquo;t forget to check your registration status!</p>
+    <button id="notif-close">&#10005;</button>
+  </div>
+
+  <!-- Navbar -->
+  <nav id="navbar">
+    <div class="nav-inner">
+      <div class="nav-logo">
+        <span class="logo-icon">&#127963;</span>
+        <span>CivicGuide</span>
+      </div>
+      <div class="nav-links" id="nav-links">
+        <a href="#timeline">Timeline</a>
+        <a href="#info">Info</a>
+        <a href="#search">Search</a>
+        <a href="#assistant">Assistant</a>
+        <a href="#faq">FAQ</a>
+        <button id="theme-toggle" aria-label="Toggle theme">&#9728;&#65039;</button>
+      </div>
+      <div class="nav-right-mobile">
+        <button id="theme-toggle-mobile" aria-label="Toggle theme">&#9728;&#65039;</button>
+        <button id="hamburger" aria-label="Menu">&#9776;</button>
+      </div>
+    </div>
+    <!-- Mobile Menu -->
+    <div class="mobile-menu hidden" id="mobile-menu">
+      <a href="#timeline" class="mobile-link">Timeline</a>
+      <a href="#info" class="mobile-link">Info</a>
+      <a href="#search" class="mobile-link">Search</a>
+      <a href="#assistant" class="mobile-link">Assistant</a>
+      <a href="#faq" class="mobile-link">FAQ</a>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section id="hero">
+    <div class="hero-orb orb1"></div>
+    <div class="hero-orb orb2"></div>
+    <div class="hero-content">
+      <span class="hero-badge">&#128737;&#65039; Your Trusted Civic Guide</span>
+      <h1 class="hero-title">Election Process<br /><span class="accent">Assistant</span></h1>
+      <p class="hero-subtitle">Understand elections confidently. A step-by-step guide to how democracy works &mdash; from registration to results.</p>
+      <div class="hero-cta">
+        <a href="#timeline" class="btn-primary">Explore the Process</a>
+        <a href="#search" class="btn-secondary">Search Topics</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Countdown Timer -->
+  <section id="countdown">
+    <div class="container">
+      <div class="glass-card countdown-card">
+        <h3 class="section-label">Next General Election &mdash; Nov 4, 2025</h3>
+        <div class="countdown-grid">
+          <div class="countdown-unit">
+            <div class="countdown-value" id="cd-days">000</div>
+            <div class="countdown-label">Days</div>
+          </div>
+          <div class="countdown-unit">
+            <div class="countdown-value" id="cd-hours">00</div>
+            <div class="countdown-label">Hours</div>
+          </div>
+          <div class="countdown-unit">
+            <div class="countdown-value" id="cd-minutes">00</div>
+            <div class="countdown-label">Minutes</div>
+          </div>
+          <div class="countdown-unit">
+            <div class="countdown-value" id="cd-seconds">00</div>
+            <div class="countdown-label">Seconds</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Election Timeline -->
+  <section id="timeline">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">The Election Journey</h2>
+        <p class="section-sub">A step-by-step look at how our democratic process unfolds.</p>
+      </div>
+
+      <!-- Timeline Progress -->
+      <div class="timeline-progress-bar">
+        <div class="timeline-progress-fill" id="timeline-progress-fill"></div>
+        <div class="timeline-steps-dots" id="timeline-dots"></div>
+      </div>
+
+      <div class="timeline-wrapper" id="timeline-steps"></div>
+    </div>
+  </section>
+
+  <!-- Info Cards -->
+  <section id="info">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">Election Information</h2>
+        <p class="section-sub">Everything you need to know about participating in democracy.</p>
+      </div>
+      <div class="cards-grid" id="info-cards"></div>
+    </div>
+  </section>
+
+  <!-- Search Section -->
+  <section id="search">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">Search Election Topics</h2>
+        <p class="section-sub">Find answers quickly by searching election-related topics.</p>
+      </div>
+      <div class="search-box">
+        <span class="search-icon">&#128269;</span>
+        <input type="text" id="search-input" placeholder="Search e.g. &ldquo;voter registration&rdquo;, &ldquo;absentee ballot&rdquo;..." />
+      </div>
+      <div id="search-results" class="search-results"></div>
+    </div>
+  </section>
+
+  <!-- AI Chat Assistant -->
+  <section id="assistant">
+    <div class="container assistant-layout">
+      <div class="assistant-left">
+        <h2 class="section-title">AI Civic Assistant</h2>
+        <p class="section-sub">Have a specific question? Chat with our AI assistant to get instant, accurate information about voting rules and procedures.</p>
+        <div class="quick-questions">
+          <button class="quick-btn" data-q="How do I register to vote?">How do I register?</button>
+          <button class="quick-btn" data-q="What ID do I need to vote?">What ID do I need?</button>
+          <button class="quick-btn" data-q="Where do I vote?">Where do I vote?</button>
+          <button class="quick-btn" data-q="Can I vote absentee?">Can I vote absentee?</button>
+        </div>
+      </div>
+      <div class="chat-window">
+        <div class="chat-header">
+          <div class="chat-avatar">&#129302;</div>
+          <div>
+            <div class="chat-name">CivicBot</div>
+            <div class="chat-status">&#128994; Online</div>
+          </div>
+        </div>
+        <div class="chat-messages" id="chat-messages">
+          <div class="message bot-message">
+            <div class="message-avatar">&#129302;</div>
+            <div class="message-bubble">Hi! I&rsquo;m your Civic Guide. Ask me anything about the election process.</div>
+          </div>
+        </div>
+        <div class="chat-input-area">
+          <input type="text" id="chat-input" placeholder="Type your question..." />
+          <button id="chat-send">&#10148;</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section id="faq">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">Frequently Asked Questions</h2>
+        <p class="section-sub">Quick answers to the most common election questions.</p>
+      </div>
+      <div class="faq-list" id="faq-list"></div>
+    </div>
+  </section>
+
+  <!-- Map Placeholder -->
+  <section id="map">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">Find Your Polling Place</h2>
+        <p class="section-sub">Enter your ZIP code to locate your nearest polling station.</p>
+      </div>
+      <div class="map-card glass-card">
+        <div class="map-visual">
+          <div class="map-pin-anim">&#128205;</div>
+          <p class="map-visual-text">Interactive Map</p>
+        </div>
+        <div class="map-search">
+          <div class="map-search-row">
+            <input type="text" id="zip-input" placeholder="Enter ZIP code..." maxlength="10" />
+            <button id="zip-search">Find</button>
+          </div>
+          <div id="map-results" class="map-results hidden">
+            <div class="poll-result">&#128205; <strong>Central Community Center</strong> &mdash; 123 Main St, 0.5 mi</div>
+            <div class="poll-result">&#128205; <strong>Riverside Elementary School</strong> &mdash; 456 Oak Ave, 1.1 mi</div>
+            <div class="poll-result">&#128205; <strong>City Hall Annex</strong> &mdash; 789 Elm Blvd, 1.8 mi</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer id="footer">
+    <div class="container footer-inner">
+      <div class="footer-col">
+        <div class="footer-logo">&#127963; CivicGuide</div>
+        <p class="footer-desc">Helping every citizen understand the democratic process clearly and confidently.</p>
+        <div class="social-icons">
+          <a href="#" aria-label="Twitter">&#120143;</a>
+          <a href="#" aria-label="Facebook">f</a>
+          <a href="#" aria-label="Instagram">&#128247;</a>
+          <a href="#" aria-label="YouTube">&#9654;</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <a href="#timeline">Election Timeline</a>
+        <a href="#info">Voting Info</a>
+        <a href="#search">Search Topics</a>
+        <a href="#assistant">AI Assistant</a>
+        <a href="#faq">FAQs</a>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <p>&#128231; info@civicguide.gov</p>
+        <p>&#128222; 1-800-VOTE-USA</p>
+        <p>&#128205; Washington, D.C.</p>
+        <p>&#128336; Mon&ndash;Fri, 9am&ndash;5pm ET</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2025 CivicGuide. All rights reserved. Non-partisan civic education resource.</p>
+    </div>
+  </footer>
+
+  <!-- Voice Assistant Button -->
+  <button id="voice-btn" aria-label="Voice Assistant">&#127908;</button>
+
+  <!-- Voice Modal -->
+  <div id="voice-modal" class="modal hidden">
+    <div class="modal-card glass-card">
+      <h3>Voice Assistant</h3>
+      <div class="waveform" id="waveform">
+        <span></span><span></span><span></span><span></span><span></span>
+      </div>
+      <p id="voice-status">Tap the mic to start listening&hellip;</p>
+      <button id="voice-mic-btn">&#127908; Start Listening</button>
+      <button id="voice-close" class="modal-close">Close</button>
+    </div>
+  </div>
+
+  <!-- Scroll to Top -->
+  <button id="scroll-top" class="hidden" aria-label="Scroll to top">&#8679;</button>
+
+  <script src="script.js"></script>
+</body>
+</html>
